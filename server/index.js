@@ -8,14 +8,13 @@ import postRoutes from './routes/posts.js';
 //initialize app, and we can use all sorts of methond on app
 const app = express();
 
-app.use('/posts', postRoutes); //every route inside posts will start with prefix "/posts"
-
 //middle ware: executed during the req-res cycle
 //in other word, it has access to both req and res from or to server and deals with them
-
 app.use(bodyParser.json({ limit: "30mb", extended: "true"})); //extend means that we can pass json of any type instead of just string or array
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true"}));
-app.use(cors());
+app.use(cors()); //use middle ware before we do anything on server
+
+app.use('/posts', postRoutes); //every route inside posts will start with prefix "/posts"
 
 //connect to mongodb atlas
 // url we will be using to connect to atlas cluster
