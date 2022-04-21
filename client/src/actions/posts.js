@@ -6,11 +6,19 @@ import * as api from '../api'
 export const getPosts = () => async (dispatch) => {
     try {
         const {data} = await api.fetchPosts(); //data returned from backend
-        const action = { type: 'FETCH_ALL', payload: data}
-        dispatch(action)
+        const action_fetch = { type: 'FETCH_ALL', payload: data}
+        dispatch(action_fetch)
     }catch(error){
         console.log(error.message)
     }
+}
 
-
+export const createPost = (post) => async (dispatch) => {
+    try {
+        const {data} = await api.createPost(post);
+        const action_create = {type: 'CREATE', payload: data}
+        dispatch(action_create)
+    } catch (error) {
+        console.log(error.message)
+    }
 }
