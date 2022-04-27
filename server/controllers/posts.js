@@ -31,6 +31,6 @@ export const updatePost = async (req,res) => {
     const post = req.body
     if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id') //id is invalid
 
-    const updatedPost = await PostMessage.findById(_id, post, {new: true}); //set new --> true enables us to update the existing post in database
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {new: true}); //set new --> true enables us to update the existing post in database
     res.json(updatedPost) //sent back to frontend
 }

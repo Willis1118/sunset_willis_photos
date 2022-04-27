@@ -5,7 +5,7 @@ import { Grid, CircularProgress } from '@material-ui/core'
 import Post from './post/Post'
 import useStyles from './styles'
 
-const Posts = () => {
+const Posts = ({setCurrentId}) => {
     const classes = useStyles()
     const posts = useSelector((state) => state.posts) //posts is one of the reducers in the store; check /reducers/index for this
 
@@ -15,7 +15,7 @@ const Posts = () => {
             <Grid className={classes.mainContainer} container alignItems='stretch' spacing={3}>
                 {posts.map((post) => (
                     <Grid key={post.id} item xs={12} sm={6}>
-                        <Post post={post}/>
+                        <Post post={post} setCurrentId={setCurrentId}/>
                     </Grid>
                 ))}
             </Grid>
